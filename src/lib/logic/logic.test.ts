@@ -27,6 +27,7 @@ import { fmtEuro, monthRecap, recapCsv, stripRow } from './recap';
 import { defaultRepeat, nextOccurrenceDate, normalizeRepeat, occurrenceDates, repeatSummary } from './recurrence';
 import { defaultSettings, sanitizeSettings } from './settings';
 import { isNewer, parseRelease, releaseNotes, shouldAutoCheck } from './updates';
+import { WIDGET_MAX_PER_DAY, widgetSnapshot } from './widget';
 
 const TODAY = '2026-11-10'; // martedì
 
@@ -518,5 +519,35 @@ describe('dati e backup', () => {
       defaultAlerts: [15],
       notifications: false,
     });
+  });
+});
+
+describe('widget', () => {
+  const cats: Category[] = [{ id: 'lav', name: 'Lavoro', color: '#3987e5', goalHours: null, hourlyRate: null, order: 0 }];
+
+  it('prepara gli impegni giorno per giorno', () => {
+    const events = [
+      ev({ id: 'a', title: 'Tirocinio', categoryId: 'lav', start: 510, end: 870, repeat: rep({ freq: 'week', weekdays: [1, 2, 3, 4] }) }),
+      ev({ id: 'b', title: 'Compleanno', allDay: true, date: '2026-11-22', endDate: '2026-11-22', color: '#d55181' }),
+      ev({ id: 'c', title: 'Bolletta', kind: 'reminder', start: 1020, end: 1020 }),
+      ev({ id: 'd', title: 'Fatto', kind: 'reminder', start: 600, end: 600, done: [TODAY] }),
+      ev({ id: 'e', title: 'Cestinato', deletedAt: 'x' }),
+    ];
+    const snap = widgetSnapshot(events, cats, TODAY);
+    expect(snap.from).toBe('2026-10-26');
+    expect(snap.to).toBe('2027-01-24');
+    expect(snap.days[TODAY]).toEqual([
+      { t: 'Tirocinio', s: 510, e: 870, c: '#3987e5', k: 0 },
+      { t: 'Bolletta', s: 1020, e: 1020, c: '#7d8799', k: 2 },
+    ]);
+    expect(snap.days['2026-11-22']).toEqual([{ t: 'Compleanno', s: 0, e: 1440, c: '#d55181', k: 1 }]);
+    expect(snap.days['2026-11-13']).toBeUndefined();
+    expect(snap.days['2026-11-09']).toBeUndefined(); // il tirocinio inizia martedì 10
+    expect(Object.keys(snap.days).every((d) => d >= snap.from && d <= snap.to)).toBe(true);
+  });
+
+  it('limita gli impegni per giorno', () => {
+    const many = Array.from({ length: 12 }, (_, i) => ev({ id: `m${i}`, title: `Evento ${i}`, start: 480 + i * 30, end: 500 + i * 30 }));
+    expect(widgetSnapshot(many, cats, TODAY).days[TODAY]).toHaveLength(WIDGET_MAX_PER_DAY);
   });
 });

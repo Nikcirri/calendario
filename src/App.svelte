@@ -4,9 +4,11 @@
   import { reportError } from './lib/errors';
   import { capitalize, fmtDayShort, isDateKey, monthName, parseKey, startOfWeek } from './lib/logic/dates';
   import { useNotificationSync } from './lib/notifySync.svelte';
+  import { useWidgetSync } from './lib/widgetSync.svelte';
   import { onBackButton, onResume, tapFeedback } from './lib/platform';
   import { forgetNotificationPlan, onNotificationTap } from './lib/services/notifications';
-  import { app, closePage, findEvent, goToday, initApp, openPage, selectDay, sheets, shiftView, tickNow } from './lib/state/app.svelte';
+  import { onWidgetAction } from './lib/services/widgets';
+  import { app, closePage, findEvent, goToday, initApp, openPage, selectDay, setView, sheets, shiftView, tickNow } from './lib/state/app.svelte';
   import { closeTopOverlay } from './lib/state/ui.svelte';
   import { announceNewVersion, refreshUpdate, resumeUpdate, update } from './lib/state/update.svelte';
   import BusyOverlay from './lib/ui/BusyOverlay.svelte';
@@ -27,8 +29,9 @@
   import UpdateSheet from './views/UpdateSheet.svelte';
   import YearView from './views/YearView.svelte';
 
-  // Le notifiche del telefono seguono gli avvisi degli eventi.
+  // Le notifiche del telefono e i widget seguono gli impegni.
   useNotificationSync();
+  useWidgetSync();
 
   let quickText = $state('');
   let dateInput = $state<HTMLInputElement | null>(null);
@@ -127,6 +130,23 @@
       // Se l'app si sta ancora aprendo, i dati arrivano un attimo dopo.
       if (app.ready) open();
       else setTimeout(open, 900);
+    });
+    onWidgetAction((action) => {
+      const run = () => {
+        closePage();
+        app.drawer = false;
+        sheets.detail = null;
+        if (action.action === 'newEvent') {
+          if (!sheets.editor) startNewEvent(app.today);
+          return;
+        }
+        // Tocco su un giorno del widget: si apre quella giornata.
+        sheets.editor = null;
+        selectDay(action.date);
+        setView('day');
+      };
+      if (app.ready) run();
+      else setTimeout(run, 900);
     });
     const timer = setInterval(() => {
       if (document.visibilityState === 'visible') tickNow();

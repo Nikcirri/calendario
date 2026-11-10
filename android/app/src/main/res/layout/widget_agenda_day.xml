@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Etichetta di un giorno nel widget "Lista eventi" ("DOMANI", "GIO 12 NOV"). -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/agenda_daylabel"
+    android:layout_width="match_parent"
+    android:layout_height="22dp"
+    android:gravity="bottom"
+    android:includeFontPadding="false"
+    android:letterSpacing="0.04"
+    android:maxLines="1"
+    android:paddingBottom="3dp"
+    android:textColor="@color/widget_accent"
+    android:textSize="11sp"
+    android:textStyle="bold" />

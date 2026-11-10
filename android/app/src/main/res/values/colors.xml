@@ -4,4 +4,12 @@
     <color name="ic_launcher_background">#171A26</color>
     <!-- Sfondo della schermata di avvio: lo stesso sfondo scuro dell'app -->
     <color name="splash_background">#0E1018</color>
+    <!-- Widget: gli stessi colori dell'app (sempre scuri) -->
+    <color name="widget_bg">#171A26</color>
+    <color name="widget_text">#F2F3F7</color>
+    <color name="widget_muted">#B4B9CC</color>
+    <color name="widget_dim">#8A90A6</color>
+    <color name="widget_accent">#C6F24E</color>
+    <color name="widget_on_accent">#10140A</color>
+    <color name="widget_sunday">#FF9B8F</color>
 </resources>

@@ -4,4 +4,20 @@
     <string name="title_activity_main">Calendario</string>
     <string name="package_name">com.nikcirri.calendario</string>
     <string name="custom_url_scheme">com.nikcirri.calendario</string>
+
+    <!-- Widget -->
+    <string name="widget_agenda_name">Lista eventi</string>
+    <string name="widget_agenda_desc">La data di oggi e i prossimi impegni.</string>
+    <string name="widget_month_name">Mese</string>
+    <string name="widget_month_desc">Il mese con un pallino nei giorni che hanno impegni.</string>
+    <string name="widget_week_name">Settimana</string>
+    <string name="widget_week_desc">I sette giorni della settimana con i loro impegni.</string>
+    <string name="widget_add">Nuovo evento</string>
+    <string name="widget_all_day">tutto il giorno</string>
+    <string name="widget_agenda_empty">Nessun impegno in arrivo</string>
+    <string name="widget_open_first">Apri l’app per vedere qui i tuoi impegni</string>
+    <string name="widget_open_refresh">Apri l’app per aggiornare gli impegni</string>
+    <string name="widget_agenda_preview">I tuoi prossimi impegni</string>
+    <string name="widget_month_preview">Il mese con i tuoi impegni</string>
+    <string name="widget_week_preview">La settimana con i tuoi impegni</string>
 </resources>

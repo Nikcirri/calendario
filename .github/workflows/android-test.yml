@@ -1,0 +1,96 @@
+# Prova i widget su un telefono Android finto (emulatore): li fa disegnare davvero con dati di esempio
+# e salva le loro immagini. Non pubblica niente. Parte a mano da Actions, oppure da sola quando sul ramo
+# di lavoro "sviluppo" cambia la parte Android.
+name: Prova su Android
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [sviluppo]
+    paths:
+      - 'android/**'
+      - 'scripts/android-widget-test.sh'
+      - 'scripts/android-test-summary.py'
+      - '.github/workflows/android-test.yml'
+
+concurrency:
+  group: prova-android
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  emulatore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - run: npx cap sync android
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Accendi KVM (serve all'emulatore per andare veloce)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Prova sull'emulatore (Android 14)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
+          script: bash scripts/android-widget-test.sh
+
+      - name: Riepilogo delle prove
+        if: always()
+        run: python3 scripts/android-test-summary.py
+
+      - name: Raccogli le immagini dei widget
+        if: always()
+        run: |
+          mkdir -p "$RUNNER_TEMP/prova-android"
+          find android/app/build/outputs/connected_android_test_additional_output -name '*.png' -exec cp {} "$RUNNER_TEMP/prova-android/" \; 2>/dev/null || true
+          ls -la "$RUNNER_TEMP/prova-android" || true
+
+      - name: Conserva immagini e rapporto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prova-android
+          path: |
+            ${{ runner.temp }}/prova-android
+            android/app/build/reports/androidTests
+          if-no-files-found: ignore
+
+      # Le immagini vanno anche su un ramo a parte ("prove-android"), che contiene solo quelle:
+      # così si possono guardare con git, senza scaricare l'archivio da Actions.
+      - name: Metti le immagini sul ramo prove-android
+        if: always()
+        run: |
+          cd "$RUNNER_TEMP/prova-android"
+          ls *.png >/dev/null 2>&1 || { echo "Nessuna immagine da salvare"; exit 0; }
+          git init -q -b prove-android
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -q -m "Immagini dei widget dalla prova sull'emulatore (${GITHUB_SHA::7})"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" prove-android

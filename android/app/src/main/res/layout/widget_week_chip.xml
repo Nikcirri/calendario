@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Etichetta di un impegno nel widget "Settimana": sfondo colorato dal codice e titolo sopra. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="16dp"
+    android:layout_marginBottom="2dp">
+
+    <ImageView
+        android:id="@+id/chip_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:src="@drawable/widget_chip" />
+
+    <TextView
+        android:id="@+id/chip_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:paddingStart="3dp"
+        android:paddingEnd="1dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="9sp" />
+</FrameLayout>

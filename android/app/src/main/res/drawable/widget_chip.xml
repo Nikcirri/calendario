@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Etichetta di un impegno nel widget Settimana: bianca, viene colorata dal codice -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#FFFFFFFF" />
+    <corners android:radius="4dp" />
+    <size android:width="40dp" android:height="16dp" />
+</shape>
