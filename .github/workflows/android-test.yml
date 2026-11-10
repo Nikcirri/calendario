@@ -58,17 +58,18 @@ jobs:
           arch: x86_64
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
-          script: bash scripts/android-widget-test.sh
+          script: bash scripts/android-widget-test.sh "$RUNNER_TEMP/prova-android" || (tail -n 150 "$RUNNER_TEMP/prova-android/gradle-completo.log" > "$RUNNER_TEMP/prova-android/gradle.log"; rm -f "$RUNNER_TEMP/prova-android/gradle-completo.log"; exit 1)
 
       - name: Riepilogo delle prove
         if: always()
         run: python3 scripts/android-test-summary.py
 
-      - name: Raccogli le immagini dei widget
+      - name: Raccogli le immagini dei widget e i risultati
         if: always()
         run: |
           mkdir -p "$RUNNER_TEMP/prova-android"
           find android/app/build/outputs/connected_android_test_additional_output -name '*.png' -exec cp {} "$RUNNER_TEMP/prova-android/" \; 2>/dev/null || true
+          find android/app/build/outputs/androidTest-results -name '*.xml' -exec cp {} "$RUNNER_TEMP/prova-android/" \; 2>/dev/null || true
           ls -la "$RUNNER_TEMP/prova-android" || true
 
       - name: Conserva immagini e rapporto
@@ -81,16 +82,16 @@ jobs:
             android/app/build/reports/androidTests
           if-no-files-found: ignore
 
-      # Le immagini vanno anche su un ramo a parte ("prove-android"), che contiene solo quelle:
-      # così si possono guardare con git, senza scaricare l'archivio da Actions.
-      - name: Metti le immagini sul ramo prove-android
+      # Immagini, risultati e fine del log vanno anche su un ramo a parte ("prove-android"), che contiene
+      # solo quelli: così si possono guardare con git, senza scaricare l'archivio da Actions.
+      - name: Metti immagini e risultati sul ramo prove-android
         if: always()
         run: |
           cd "$RUNNER_TEMP/prova-android"
-          ls *.png >/dev/null 2>&1 || { echo "Nessuna immagine da salvare"; exit 0; }
+          [ -n "$(ls -A . 2>/dev/null)" ] || { echo "Niente da salvare"; exit 0; }
           git init -q -b prove-android
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -q -m "Immagini dei widget dalla prova sull'emulatore (${GITHUB_SHA::7})"
+          git commit -q -m "Immagini e risultati della prova sull'emulatore (${GITHUB_SHA::7})"
           git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" prove-android

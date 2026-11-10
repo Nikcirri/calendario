@@ -157,10 +157,13 @@ public class WidgetRenderTest {
         assertTrue(t.toString(), t.contains("Pizza"));
 
         List<String> small = texts(inflate(WeekWidget.build(context, 110, TODAY), 320, 110, "widget-settimana-piccolo"));
-        // Con poco spazio gli impegni in più diventano "+3".
+        // Con poca altezza il titolo sparisce e restano un impegno per giorno e il conto degli altri ("+2").
+        assertFalse(small.toString(), small.contains("9 – 15 novembre"));
+        assertTrue(small.toString(), small.contains("Colazione"));
+        assertTrue(small.toString(), small.contains("+2"));
         assertTrue(small.toString(), small.contains("+3"));
 
-        List<String> cross = texts(inflate(WeekWidget.build(context, 130, LocalDate.of(2026, 12, 1)), 320, 130, "widget-settimana-due-mesi"));
+        List<String> cross = texts(inflate(WeekWidget.build(context, 170, LocalDate.of(2026, 12, 1)), 320, 170, "widget-settimana-due-mesi"));
         assertTrue(cross.toString(), cross.contains("30 nov – 6 dic"));
     }
 }

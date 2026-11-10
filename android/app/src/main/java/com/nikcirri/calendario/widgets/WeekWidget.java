@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RemoteViews;
 import com.nikcirri.calendario.R;
 import java.time.LocalDate;
@@ -23,6 +24,8 @@ public class WeekWidget extends AppWidgetProvider {
     private static final int DAY_HEAD_DP = 38;
     private static final int CHIP_DP = 18;
     private static final int DEFAULT_HEIGHT_DP = 130;
+    /** Sotto questa altezza la riga del titolo non si mostra. */
+    private static final int COMPACT_BELOW_DP = 150;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager manager, int[] ids) {
@@ -69,7 +72,11 @@ public class WeekWidget extends AppWidgetProvider {
         views.setTextViewText(R.id.week_title, title(monday, last));
         views.removeAllViews(R.id.week_days);
 
-        int room = (heightDp > 0 ? heightDp : DEFAULT_HEIGHT_DP) - PADDING_DP - HEADER_DP - DAY_HEAD_DP;
+        int height = heightDp > 0 ? heightDp : DEFAULT_HEIGHT_DP;
+        // Con poca altezza la riga del titolo si nasconde: così c'è posto per gli impegni.
+        boolean compact = height < COMPACT_BELOW_DP;
+        views.setViewVisibility(R.id.week_header, compact ? View.GONE : View.VISIBLE);
+        int room = height - PADDING_DP - (compact ? 0 : HEADER_DP) - DAY_HEAD_DP;
         int maxChips = Math.max(1, room / CHIP_DP);
 
         for (int d = 0; d < 7; d++) {
