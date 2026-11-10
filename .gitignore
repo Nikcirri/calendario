@@ -9,3 +9,7 @@ dist/
 *.keystore
 *.p12
 keystore*.txt
+
+# Foto delle prove nel browser
+tests/screenshots/
+__pycache__/

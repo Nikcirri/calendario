@@ -1,0 +1,28 @@
+# Regole di lavoro per il progetto Calendario
+
+- App calendario per Android che unisce le funzioni migliori di più app (punto di partenza: il calendario Samsung): viste Anno, Mese, Settimana, Giorno e Programma, eventi e promemoria con ripetizioni e avvisi, categorie con recap mensile delle ore, modelli, ricerca, cestino, backup.
+  L'elenco completo delle funzioni volute e le tappe sono nel progetto Claude "app calendario" (documento `prompt-app-calendario.md`). Tappe: 1) calendario sul telefono (fatta, versione 0.1.0); 2) widget della schermata Home; 3) sincronizzazione con gli account del telefono (Google, Samsung, Microsoft); 4) calendario condiviso, spazi e notifiche condivise (serve un server).
+- Stack: Vite + Svelte 5 (runes) + TypeScript strict + Capacitor 8 Android, dati in IndexedDB con Dexie. Niente CDN: tutto incluso nell'app, che funziona senza internet. L'unica richiesta di rete è il controllo aggiornamenti verso l'API Releases di GitHub.
+- Struttura:
+  - `src/lib/logic`: funzioni pure con i test Vitest (`logic.test.ts`). `dates.ts` (giorni come stringhe `AAAA-MM-GG`, orari in minuti da mezzanotte, niente fusi orari), `recurrence.ts` (ripetizioni), `occurrences.ts` (eventi distribuiti sui giorni, colonne degli eventi sovrapposti, sovrapposizioni), `recap.ts`, `quickadd.ts` (inserimento rapido in italiano), `notify.ts` (quali notifiche programmare), `holidays.ts`, `backup.ts`, `model.ts` (valori di partenza, controllo dei dati, testi degli avvisi), `updates.ts`.
+  - `src/lib/db.ts` e `src/lib/repo.ts`: database (test con fake-indexeddb in `repo.test.ts`). `src/lib/actions.ts`: azioni dell'utente (salva, elimina con "Annulla", inserimento rapido, modelli).
+  - `src/lib/state`: `app.svelte.ts` (dati sempre aggiornati con `liveQuery`, vista e giorno scelti, impostazioni), `ui.svelte.ts` (messaggi, dialoghi, tasto Indietro), `update.svelte.ts`.
+  - `src/lib/services`: notifiche (`@capacitor/local-notifications`), file (backup e CSV del recap), aggiornamenti.
+  - `src/views`: schermate. `App.svelte`: barra in alto, vista, barra in basso con inserimento rapido e +.
+- Grafica: tema scuro, accento verde lime, caratteri Inter e Space Grotesk inclusi (variabili in `src/app.css`). La struttura riprende il calendario Samsung, ma colori, icone e nome sono dell'app: non copiare la grafica di Samsung. La bozza approvata è la tela "App Calendario – bozza schermate" nel progetto Claude.
+  Attenzione: `.chip`, `.row`, `.btn`, `.card`, `.page` sono classi globali di `app.css`; nei componenti non riusare questi nomi per cose diverse.
+- Date e orari si mostrano sempre con le funzioni di `dates.ts` (italiano, 24 ore). I campi data/ora del telefono si usano solo tramite `src/lib/ui/PickerField.svelte` (campo invisibile sopra al testo dell'app).
+- Notifiche: `logic/notify.ts` decide le prossime (al massimo 120, entro 60 giorni), `services/notifications.ts` le programma e `notifySync.svelte.ts` le riallinea a ogni modifica. Il permesso `USE_EXACT_ALARM` nel manifest serve per l'orario esatto senza mandare l'utente nelle impostazioni.
+- Aggiornamenti: controllo all'apertura e al ritorno nell'app (al massimo ogni 10 minuti); "Aggiorna ora" scarica l'APK con il plugin dell'app `AppUpdaterPlugin.java` (accetta solo URL delle Release di questo repository: questo controllo non va allargato) e apre l'installazione di Android. Le prime righe del changelog compaiono nell'avviso: scrivile brevi, per chi usa l'app.
+- R8 (minify) è spento di proposito: i plugin di Capacitor usano la reflection.
+- Implementa tutto per intero: niente codice troncato, niente `TODO`, niente funzioni vuote o segnaposto. Niente funzioni mostrate nell'interfaccia che non funzionano ancora.
+- Fine di ogni modifica, sempre in quest'ordine:
+  1. `npm run verify` (controllo tipi + test + build) deve passare; poi `python3 tests/smoke.py` (prova completa nel browser con le foto in `tests/screenshots/`): guarda le foto delle schermate toccate;
+  2. `npx cap sync android`;
+  3. aggiorna `CHANGELOG.md` con una sezione `## [X.Y.Z] - AAAA-MM-GG` e la versione in `package.json`;
+  4. commit e push su `main`: quando cambia la versione in `package.json`, GitHub Actions costruisce l'APK firmato e pubblica la Release `vX.Y.Z` (non servono tag a mano). Controlla che i workflow "Controllo" e "Pubblica APK" finiscano con successo;
+  5. dai all'utente il link https://github.com/Nikcirri/calendario/releases/latest e un elenco breve di cose da provare sul telefono.
+- L'utente è principiante e usa solo il telefono: istruzioni passo passo, parole semplici, niente comandi da terminale per lui.
+- La chiave di firma non va mai nel repository: vive nei Secrets di GitHub (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`); il workflow legge da solo il nome (alias) della chiave. Non cambiarla mai: con una chiave diversa gli aggiornamenti non si installano sopra la versione vecchia.
+- Non cambiare `appId` (`com.nikcirri.calendario`) né il nome del database IndexedDB (`calendario`). Se cambi lo schema, aggiungi una nuova `version()` in `src/lib/db.ts` senza togliere le vecchie. I dati letti da un backup passano sempre da `sanitizeEvent` e simili in `model.ts`: se aggiungi un campo, aggiungilo anche lì con un valore di partenza.
+- Testi dell'interfaccia in italiano; codice e nomi in inglese.
