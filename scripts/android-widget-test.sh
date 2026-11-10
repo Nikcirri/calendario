@@ -12,9 +12,9 @@ chmod +x gradlew
 if [ -n "$OUT" ]; then
   mkdir -p "$OUT"
   # Le ultime righe del log bastano per capire un eventuale errore.
-  ./gradlew --no-daemon --console=plain connectedDebugAndroidTest 2>&1 | tee "$OUT/gradle-completo.log"
+  ./gradlew --no-daemon --console=plain :app:connectedDebugAndroidTest 2>&1 | tee "$OUT/gradle-completo.log"
   tail -n 150 "$OUT/gradle-completo.log" > "$OUT/gradle.log"
   rm -f "$OUT/gradle-completo.log"
 else
-  ./gradlew --no-daemon --console=plain connectedDebugAndroidTest
+  ./gradlew --no-daemon --console=plain :app:connectedDebugAndroidTest
 fi

@@ -1,5 +1,11 @@
 # Novità
 
+## [0.2.0] - 2026-11-10
+
+- Widget per la schermata Home: Lista eventi, Mese e Settimana.
+- Dai widget: tocca un giorno per aprirlo nell’app, tocca + per creare un evento.
+- I widget si aggiornano da soli quando cambi gli impegni e a mezzanotte.
+
 ## [0.1.0] - 2026-11-10
 
 - Prima versione: calendario con viste Anno, Mese, Settimana, Giorno e Programma.

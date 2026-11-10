@@ -8,6 +8,7 @@ App calendario per Android: tutto quello che serve per organizzare lavoro, studi
 - **Inserimento rapido**: scrivi "Cena con Marco domani alle 20" e l'evento si crea da solo.
 - **Categorie e recap del mese**: ore fatte e programmate per categoria, tetto di ore, tariffa oraria, compenso stimato, grafico per settimana, tabella per Excel.
 - **Modelli** di evento, avviso delle sovrapposizioni, ricerca, cestino (30 giorni), festività italiane.
+- **Widget** per la schermata Home: Lista eventi, Mese e Settimana.
 - **Backup** in un file e **aggiornamenti** dentro l'app.
 
 Tutti i dati restano sul telefono.
@@ -23,7 +24,6 @@ Per aggiornare: l'app avvisa da sola quando c'è una versione nuova. La nuova ve
 
 ## In arrivo
 
-- Widget per la schermata Home (mese, settimana, lista eventi).
 - Sincronizzazione con gli account del telefono (Google, Samsung, Microsoft).
 - Calendario condiviso fra più persone, con spazi separati e notifiche condivise.
 
@@ -32,5 +32,6 @@ Per aggiornare: l'app avvisa da sola quando c'è una versione nuova. La nuova ve
 - Vite + Svelte 5 + TypeScript + Capacitor 8 (Android). Dati in IndexedDB con Dexie.
 - `src/lib/logic`: funzioni pure con i test. `src/lib/services`: notifiche, file, aggiornamenti. `src/views`: schermate.
 - `npm run dev` avvia la versione web, `npm run verify` fa controllo dei tipi, test e build, `python3 tests/smoke.py` prova l'app nel browser e fotografa le schermate.
+- `.github/workflows/android-test.yml` ("Prova su Android") disegna i widget su un emulatore e ne salva le immagini.
 - Quando su `main` cambia la versione in `package.json`, GitHub Actions costruisce l'APK firmato e pubblica la Release (`.github/workflows/release.yml`). A ogni push `.github/workflows/check.yml` fa i controlli e una build Android di prova.
 - Regole di lavoro: [`CLAUDE.md`](CLAUDE.md). Novità: [`CHANGELOG.md`](CHANGELOG.md).
