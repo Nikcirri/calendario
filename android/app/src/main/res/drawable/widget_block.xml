@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Blocco di un impegno nella griglia delle ore (intero, dentro una sola ora): bianco, colorato dal codice -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#FFFFFFFF" />
+    <corners android:radius="5dp" />
+</shape>

@@ -12,4 +12,8 @@
     <color name="widget_accent">#C6F24E</color>
     <color name="widget_on_accent">#10140A</color>
     <color name="widget_sunday">#FF9B8F</color>
+    <!-- Griglia delle ore del widget Settimana: righe, promemoria, colonna di oggi -->
+    <color name="widget_line">#2A2F42</color>
+    <color name="widget_surface2">#212536</color>
+    <color name="widget_today_tint">#0FC6F24E</color>
 </resources>

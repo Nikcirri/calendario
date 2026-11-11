@@ -60,6 +60,12 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_week_info" />
         </receiver>
+        <!-- Righe della griglia delle ore del widget Settimana sui telefoni fino ad Android 11.
+             Solo Android può collegarsi (BIND_REMOTEVIEWS). -->
+        <service
+            android:name=".widgets.WeekHoursService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
         <!-- Cambio del giorno (mezzanotte) e dell'ora: i widget si ridisegnano. Non raggiungibile da altre app. -->
         <receiver
             android:name=".widgets.WidgetRefreshReceiver"

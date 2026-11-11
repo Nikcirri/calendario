@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Pezzo di un blocco nella griglia delle ore: sfondo colorato dal codice e titolo sopra.
+  L'altezza la decide il codice (sul testo). Per i promemoria si accende block_edge: lo sfondo colorato
+  resta visibile solo come bordo, come nell'app.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/block_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:src="@drawable/widget_block" />
+
+    <FrameLayout
+        android:id="@+id/block_edge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/block_fill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/widget_block" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/block_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:breakStrategy="simple"
+        android:hyphenationFrequency="none"
+        android:includeFontPadding="false"
+        android:paddingStart="3dp"
+        android:paddingTop="@dimen/widget_block_pad"
+        android:paddingEnd="1dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="@dimen/widget_block_text"
+        android:textStyle="bold" />
+</FrameLayout>

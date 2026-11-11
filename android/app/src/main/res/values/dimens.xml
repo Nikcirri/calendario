@@ -2,4 +2,10 @@
 <resources>
     <!-- Angoli dei widget sui telefoni fino ad Android 11 -->
     <dimen name="widget_radius">24dp</dimen>
+    <!-- Griglia delle ore del widget Settimana: altezza di un'ora, testo e margine dei blocchi, riga di "adesso".
+         WeekHours.java legge queste misure: i layout e il codice restano sempre uguali. -->
+    <dimen name="widget_hour_height">40dp</dimen>
+    <dimen name="widget_block_text">9sp</dimen>
+    <dimen name="widget_block_pad">2dp</dimen>
+    <dimen name="widget_now_line">2dp</dimen>
 </resources>

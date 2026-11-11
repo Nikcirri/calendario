@@ -11,7 +11,7 @@
     <string name="widget_month_name">Mese</string>
     <string name="widget_month_desc">Il mese con un pallino nei giorni che hanno impegni.</string>
     <string name="widget_week_name">Settimana</string>
-    <string name="widget_week_desc">I sette giorni della settimana con i loro impegni.</string>
+    <string name="widget_week_desc">I sette giorni della settimana con i loro impegni. Se lo allunghi mostra le ore, da scorrere.</string>
     <string name="widget_add">Nuovo evento</string>
     <string name="widget_all_day">tutto il giorno</string>
     <string name="widget_agenda_empty">Nessun impegno in arrivo</string>

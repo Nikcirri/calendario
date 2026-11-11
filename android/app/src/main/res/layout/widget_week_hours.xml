@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Widget "Settimana" quando è alto: titolo, +, i sette giorni e sotto la griglia delle ore che si scorre
+  (una riga per ogni ora, widget_week_hour.xml). Solo viste ammesse nei widget.
+  La colonna delle ore a sinistra pesa 0.62 e ogni giorno pesa 1, qui e in widget_week_hour.xml:
+  così i giorni in alto restano allineati alle colonne della griglia.
+  Le misure in dp devono restare uguali alle costanti di WeekWidget.java e WeekHours.java.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg"
+    android:clipToOutline="true"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/week_header"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/week_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:paddingStart="4dp"
+            android:text="@string/widget_week_name"
+            android:textColor="@color/widget_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/week_add"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/widget_btn_accent"
+            android:contentDescription="@string/widget_add"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="+"
+            android:textColor="@color/widget_on_accent"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <!-- Spazio sopra la colonna delle ore -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.62" />
+
+        <LinearLayout
+            android:id="@+id/week_heads"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:baselineAligned="false"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/week_hours"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:fadingEdgeLength="10dp"
+        android:listSelector="@android:color/transparent"
+        android:requiresFadingEdge="vertical" />
+</LinearLayout>

@@ -8,7 +8,7 @@ App calendario per Android: tutto quello che serve per organizzare lavoro, studi
 - **Inserimento rapido**: scrivi "Cena con Marco domani alle 20" e l'evento si crea da solo.
 - **Categorie e recap del mese**: ore fatte e programmate per categoria, tetto di ore, tariffa oraria, compenso stimato, grafico per settimana, tabella per Excel.
 - **Modelli** di evento, avviso delle sovrapposizioni, ricerca, cestino (30 giorni), festività italiane.
-- **Widget** per la schermata Home: Lista eventi, Mese e Settimana.
+- **Widget** per la schermata Home: Lista eventi, Mese e Settimana (che, allungato, mostra la griglia delle ore da scorrere).
 - **Backup** in un file e **aggiornamenti** dentro l'app.
 
 Tutti i dati restano sul telefono.

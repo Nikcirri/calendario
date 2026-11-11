@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Un'ora della griglia del widget "Settimana": il numero dell'ora e le sette caselle dei giorni.
+  Dentro ogni casella il codice (WeekHours.java) mette i pezzi dei blocchi che cadono in quell'ora.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/hour_row"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/widget_hour_height"
+    android:baselineAligned="false"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/hour_label"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.62"
+        android:gravity="top|end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:paddingTop="2dp"
+        android:paddingEnd="5dp"
+        android:textColor="@color/widget_dim"
+        android:textSize="9sp" />
+
+    <FrameLayout
+        android:id="@+id/hour_d0"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+
+    <FrameLayout
+        android:id="@+id/hour_d1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+
+    <FrameLayout
+        android:id="@+id/hour_d2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+
+    <FrameLayout
+        android:id="@+id/hour_d3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+
+    <FrameLayout
+        android:id="@+id/hour_d4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+
+    <FrameLayout
+        android:id="@+id/hour_d5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+
+    <FrameLayout
+        android:id="@+id/hour_d6"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/widget_hour_cell" />
+</LinearLayout>

@@ -21,10 +21,11 @@ public class WidgetsPlugin extends Plugin {
 
     @Override
     public void load() {
-        // A ogni apertura dell'app i widget si rimettono in pari (giorno giusto, sveglia di mezzanotte attiva).
+        // A ogni apertura dell'app i widget si rimettono in pari (giorno giusto, sveglie di mezzanotte e della riga di "adesso" attive).
         Context context = getContext().getApplicationContext();
         WidgetRefreshReceiver.updateAll(context);
         WidgetRefreshReceiver.scheduleMidnight(context);
+        WidgetRefreshReceiver.scheduleTick(context);
     }
 
     /** Capacitor chiama questo metodo sia all'avvio dell'app sia quando l'app già aperta riceve un nuovo intent. */
@@ -64,6 +65,7 @@ public class WidgetsPlugin extends Plugin {
         WidgetStore.saveSnapshot(context, json);
         WidgetRefreshReceiver.updateAll(context);
         WidgetRefreshReceiver.scheduleMidnight(context);
+        WidgetRefreshReceiver.scheduleTick(context);
         call.resolve();
     }
 }

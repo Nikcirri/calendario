@@ -56,6 +56,8 @@ jobs:
           api-level: 34
           target: google_apis
           arch: x86_64
+          # Schermo da telefono vero (1080 x 2400, densità 2,625): immagini nitide e misure arrotondate come sui telefoni.
+          profile: pixel_6
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
           script: bash scripts/android-widget-test.sh "$RUNNER_TEMP/prova-android" || (tail -n 150 "$RUNNER_TEMP/prova-android/gradle-completo.log" > "$RUNNER_TEMP/prova-android/gradle.log"; rm -f "$RUNNER_TEMP/prova-android/gradle-completo.log"; exit 1)

@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import com.nikcirri.calendario.MainActivity;
 import java.time.LocalDate;
@@ -67,6 +68,12 @@ final class WidgetUi {
         return options == null ? 0 : options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT, 0);
     }
 
+    /** Larghezza del widget in dp (0 se Android non la dice). */
+    static int widthDp(AppWidgetManager manager, int id) {
+        Bundle options = manager.getAppWidgetOptions(id);
+        return options == null ? 0 : options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 0);
+    }
+
     private static Intent appIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -96,5 +103,22 @@ final class WidgetUi {
         intent.setAction(ACTION_OPEN_DAY);
         intent.putExtra(EXTRA_DATE, day.toString());
         return PendingIntent.getActivity(context, 100_000 + (int) day.toEpochDay(), intent, FLAGS);
+    }
+
+    /**
+     * Per le righe di una lista che si scorre (griglia delle ore): Android non permette un tocco diverso
+     * per ogni riga, ma un modello unico che ogni casella completa con il suo giorno (`dayFillIn`).
+     * Per questo è l'unico tocco "modificabile": può solo ricevere il giorno, e apre comunque solo questa app.
+     */
+    static PendingIntent openDayTemplate(Context context) {
+        Intent intent = appIntent(context);
+        intent.setAction(ACTION_OPEN_DAY);
+        int mutable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0;
+        return PendingIntent.getActivity(context, 2, intent, PendingIntent.FLAG_UPDATE_CURRENT | mutable);
+    }
+
+    /** Il giorno che una casella della griglia aggiunge al modello qui sopra. */
+    static Intent dayFillIn(LocalDate day) {
+        return new Intent().putExtra(EXTRA_DATE, day.toString());
     }
 }

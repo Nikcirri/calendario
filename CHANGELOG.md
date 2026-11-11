@@ -1,5 +1,11 @@
 # Novità
 
+## [0.2.1] - 2026-11-11
+
+- Widget Settimana: se lo allunghi mostra la griglia con gli orari, come nell’app, e la puoi scorrere.
+- La griglia si apre sull’ora di adesso, con una riga rossa che segna il momento. Tocca un giorno per aprirlo.
+- Da piccolo il widget resta com’era.
+
 ## [0.2.0] - 2026-11-10
 
 - Widget per la schermata Home: Lista eventi, Mese e Settimana.
