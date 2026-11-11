@@ -42,6 +42,5 @@
         android:paddingTop="@dimen/widget_block_pad"
         android:paddingEnd="1dp"
         android:textColor="#FFFFFFFF"
-        android:textSize="@dimen/widget_block_text"
-        android:textStyle="bold" />
+        android:textSize="@dimen/widget_block_text" />
 </FrameLayout>

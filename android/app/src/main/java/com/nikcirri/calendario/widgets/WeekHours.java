@@ -91,7 +91,7 @@ final class WeekHours {
             nowPx = res.getDimensionPixelSize(R.dimen.widget_now_line);
             // Altezza di una riga di testo del blocco, con un po' di margine: serve a sapere quante righe ci stanno.
             Paint paint = new Paint();
-            paint.setTypeface(Typeface.DEFAULT_BOLD);
+            paint.setTypeface(Typeface.DEFAULT);
             paint.setTextSize(res.getDimension(R.dimen.widget_block_text));
             Paint.FontMetricsInt fm = paint.getFontMetricsInt();
             lineHeightPx = Math.max(1, (int) Math.ceil((fm.descent - fm.ascent + fm.leading) * 1.1f));
