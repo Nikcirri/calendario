@@ -12,7 +12,11 @@ import android.appwidget.AppWidgetHostView;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Parcel;
+import android.view.PixelCopy;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -28,6 +32,8 @@ import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -301,8 +307,8 @@ public class WidgetRenderTest {
         }
         // Sabato mattina tre impegni insieme: colonne troppo strette per scriverci, restano solo i colori.
         assertFalse(all.toString(), all.contains("Palestra"));
-        // Il tirocinio dura sei ore: il titolo si ripete, così scorrendo se ne vede sempre uno.
-        assertTrue(all.toString(), all.stream().filter("Tirocinio"::equals).count() >= 8);
+        // Il tirocinio dura sei ore ma il titolo si scrive una volta sola per blocco (quattro giorni, quattro titoli).
+        assertEquals(all.toString(), 4, all.stream().filter("Tirocinio"::equals).count());
 
         // Più stretto e con i dati di tutti i giorni: non deve rompersi niente.
         inflateHosted(travel(WeekWidget.build(context, 1, 250, 300, TODAY, 23 * 60 + 50), size), 250, 300, 19, "widget-settimana-ore-stretto");
@@ -343,6 +349,86 @@ public class WidgetRenderTest {
             int[] same = settle(host[0]);
             assertEquals(later[0], same[0]);
         }
+    }
+
+    /**
+     * Alcune schermate Home (per esempio quella dei Samsung) disegnano i widget un po' rimpiccioliti: i bordi
+     * delle righe cadono a metà pixel e tra un pezzo e l'altro di un blocco lungo può comparire una riga sottile.
+     * Qui il widget viene rimpicciolito apposta e si controlla, sui pixel veri dello schermo, che il blocco
+     * del tirocinio (lunedì, 8:30 – 14:30) sia di un colore solo dalle 10 alle 13 passate.
+     */
+    @Test
+    public void weekHoursBlocksAreSeamlessWhenScaled() throws Exception {
+        WidgetStore.saveSnapshot(context, BUSY);
+        try (ActivityScenario<WidgetTestActivity> scenario = ActivityScenario.launch(WidgetTestActivity.class)) {
+            Activity[] activity = new Activity[1];
+            scenario.onActivity(a -> activity[0] = a);
+            AppWidgetHostView[] host = new AppWidgetHostView[1];
+            onMain(() -> {
+                host[0] = new AppWidgetHostView(activity[0]);
+                activity[0].addContentView(host[0], new FrameLayout.LayoutParams(px(320), px(400)));
+                host[0].setPivotX(0f);
+                host[0].setPivotY(0f);
+                host[0].setScaleX(0.83f);
+                host[0].setScaleY(0.83f);
+                host[0].updateAppWidget(WeekWidget.build(activity[0], 1, 320, 400, TODAY, 10 * 60));
+            });
+            int[] rows = settle(host[0]);
+            assertTrue("Righe visibili: " + rows[0] + " – " + rows[1], rows[0] <= 10 && rows[1] >= 13);
+
+            // Colonna di pixel dentro il blocco di lunedì, dalle 10 e qualcosa alle 13 e qualcosa: attraversa tre cambi d'ora.
+            int[] line = new int[3];
+            onMain(() -> {
+                ListView list = host[0].findViewById(R.id.week_hours);
+                View from = list.getChildAt(10 - list.getFirstVisiblePosition()).findViewById(R.id.hour_d0);
+                View to = list.getChildAt(13 - list.getFirstVisiblePosition()).findViewById(R.id.hour_d0);
+                int[] a = new int[2];
+                int[] b = new int[2];
+                from.getLocationInWindow(a);
+                to.getLocationInWindow(b);
+                line[0] = a[0] + Math.round(from.getWidth() * 0.83f * 0.6f);
+                line[1] = a[1] + 4;
+                line[2] = b[1] + 8;
+            });
+            Bitmap shot = screenshot(activity[0]);
+            save(shot, "widget-settimana-ore-rimpicciolito");
+            int expected = WidgetUi.chipColor(0xFF3987E5);
+            int worst = 0;
+            int worstY = -1;
+            for (int y = line[1]; y <= line[2]; y++) {
+                int c = shot.getPixel(line[0], y);
+                int diff = Math.max(Math.abs(Color.red(c) - Color.red(expected)), Math.max(Math.abs(Color.green(c) - Color.green(expected)), Math.abs(Color.blue(c) - Color.blue(expected))));
+                if (diff > worst) {
+                    worst = diff;
+                    worstY = y;
+                }
+            }
+            assertTrue("Riga visibile dentro il blocco: differenza di colore " + worst + " alla riga di pixel " + worstY + " (da " + line[1] + " a " + line[2] + ")", worst <= 6);
+        }
+    }
+
+    /** I pixel veri della finestra, come li vede chi guarda lo schermo. */
+    private static Bitmap screenshot(Activity activity) throws InterruptedException {
+        View decor = activity.getWindow().getDecorView();
+        Bitmap bitmap = Bitmap.createBitmap(decor.getWidth(), decor.getHeight(), Bitmap.Config.ARGB_8888);
+        HandlerThread thread = new HandlerThread("foto");
+        thread.start();
+        CountDownLatch done = new CountDownLatch(1);
+        int[] result = { -1 };
+        PixelCopy.request(
+            activity.getWindow(),
+            bitmap,
+            r -> {
+                result[0] = r;
+                done.countDown();
+            },
+            new Handler(thread.getLooper())
+        );
+        boolean finished = done.await(10, TimeUnit.SECONDS);
+        thread.quitSafely();
+        assertTrue("La foto dello schermo non è arrivata", finished);
+        assertEquals(PixelCopy.SUCCESS, result[0]);
+        return bitmap;
     }
 
     /** Aspetta che la lista del widget sia disegnata e ferma; restituisce prima e ultima riga visibile. */

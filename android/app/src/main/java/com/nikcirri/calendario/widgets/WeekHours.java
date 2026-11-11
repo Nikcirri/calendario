@@ -30,8 +30,6 @@ final class WeekHours {
     static final int HOUR_DP = 40;
     /** Durata minima disegnata (come nell'app), così anche promemoria ed eventi brevi si leggono. */
     static final int MIN_BLOCK_MINUTES = 30;
-    /** Nei blocchi lunghi il titolo si ripete ogni tante ore: scorrendo se ne vede sempre almeno uno. */
-    private static final int TITLE_EVERY_HOURS = 3;
     /** Posti per gli impegni di tutto il giorno sotto ogni giorno (l'ultimo può diventare "+2"). */
     private static final int MAX_ALL_DAY = 2;
     /** Spazio tra i giorni e la lista (margine di week_hours in widget_week_hours.xml). */
@@ -59,7 +57,7 @@ final class WeekHours {
         int cols = 1;
         /** Numero del gruppo di impegni sovrapposti a cui appartiene. */
         int group;
-        /** Prima ora in cui il titolo ci sta (-1 = da nessuna parte, -2 = ancora da calcolare). */
+        /** L'ora in cui si scrive il titolo: la prima in cui ci sta (-1 = da nessuna parte, -2 = ancora da calcolare). */
         int titleHour = -2;
 
         Block(WidgetData.Item item, int top, int bottom) {
@@ -345,7 +343,7 @@ final class WeekHours {
         return piece;
     }
 
-    /** Il titolo va nel primo pezzo abbastanza alto da contenerlo e poi, nei blocchi lunghi, ogni TITLE_EVERY_HOURS ore. */
+    /** Il titolo si scrive una volta sola: nel primo pezzo del blocco abbastanza alto da contenerlo. */
     private static boolean showsTitle(Metrics m, Block b, int hour) {
         if (b.titleHour == -2) {
             b.titleHour = -1;
@@ -356,7 +354,7 @@ final class WeekHours {
                 }
             }
         }
-        return b.titleHour >= 0 && hour >= b.titleHour && (hour - b.titleHour) % TITLE_EVERY_HOURS == 0;
+        return hour == b.titleHour;
     }
 
     /** Altezza in pixel del pezzo del blocco che cade nell'ora `hour` (stesso calcolo di `group`). */
