@@ -1,5 +1,10 @@
 # Novità
 
+## [0.2.2] - 2026-11-11
+
+- Widget Settimana: nella griglia delle ore il titolo di un impegno si vede una volta sola.
+- Sparite le righe sottili che comparivano dentro i blocchi lunghi.
+
 ## [0.2.1] - 2026-11-11
 
 - Widget Settimana: se lo allunghi mostra la griglia con gli orari, come nell’app, e la puoi scorrere.

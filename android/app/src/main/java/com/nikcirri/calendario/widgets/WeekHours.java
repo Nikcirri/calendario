@@ -322,7 +322,7 @@ final class WeekHours {
         int color = reminder ? b.item.color : WidgetUi.chipColor(b.item.color);
         piece.setImageViewResource(R.id.block_bg, shape);
         piece.setInt(R.id.block_bg, "setColorFilter", color);
-        // Dove il blocco continua nell'ora prima o dopo, una striscia che sporge rende netto il bordo del pezzo
+        // Dove il blocco continua nell'ora prima o dopo, una striscia che sporge copre la giuntura
         // (vedi widget_week_block.xml): i pezzi si attaccano senza righe in mezzo.
         join(piece, R.id.block_join_top, !first, color);
         join(piece, R.id.block_join_bottom, !last, color);

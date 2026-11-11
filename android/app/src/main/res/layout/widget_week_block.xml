@@ -5,9 +5,10 @@
   resta visibile solo come bordo, come nell'app.
 
   Le strisce "join" si accendono sui lati dove il blocco continua nell'ora prima o dopo. Sporgono di 2dp
-  oltre il pezzo (margine negativo) e la parte che sporge viene tagliata: così il bordo del pezzo è un
-  taglio netto e non una sfumatura. Serve sulle schermate Home che disegnano i widget un po' rimpiccioliti
-  (Samsung): senza, tra un pezzo e l'altro di un blocco lungo si vedrebbe una riga sottile più scura.
+  oltre il pezzo (margine negativo) e ripassano il colore più volte (widget_block_join.xml).
+  Servono sulle schermate Home che disegnano i widget un po' rimpiccioliti (Samsung): lì il bordo tra due
+  righe della lista cade a metà pixel e Android lo sfuma, quindi tra un pezzo e l'altro di un blocco lungo
+  si vedrebbe una riga sottile più scura. La prova weekHoursBlocksAreSeamlessWhenScaled lo controlla.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -29,7 +30,7 @@
         android:layout_marginTop="-2dp"
         android:importantForAccessibility="no"
         android:scaleType="fitXY"
-        android:src="@drawable/widget_block_mid"
+        android:src="@drawable/widget_block_join"
         android:visibility="gone" />
 
     <ImageView
@@ -40,7 +41,7 @@
         android:layout_marginBottom="-2dp"
         android:importantForAccessibility="no"
         android:scaleType="fitXY"
-        android:src="@drawable/widget_block_mid"
+        android:src="@drawable/widget_block_join"
         android:visibility="gone" />
 
     <FrameLayout
@@ -65,7 +66,7 @@
             android:layout_marginTop="-2dp"
             android:importantForAccessibility="no"
             android:scaleType="fitXY"
-            android:src="@drawable/widget_block_mid"
+            android:src="@drawable/widget_block_join"
             android:visibility="gone" />
 
         <ImageView
@@ -76,7 +77,7 @@
             android:layout_marginBottom="-2dp"
             android:importantForAccessibility="no"
             android:scaleType="fitXY"
-            android:src="@drawable/widget_block_mid"
+            android:src="@drawable/widget_block_join"
             android:visibility="gone" />
     </FrameLayout>
 

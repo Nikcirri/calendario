@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Striscia che attacca due pezzi di un blocco (vedi widget_week_block.xml): tre rettangoli uguali uno
+  sopra l'altro. Sul bordo di una riga della lista Android sfuma quello che disegna; ripassando tre volte
+  lo stesso colore la sfumatura diventa piena e la giuntura non si vede più.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFFFF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFFFF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFFFF" />
+        </shape>
+    </item>
+</layer-list>
