@@ -319,17 +319,24 @@ final class WeekHours {
         RemoteViews piece = new RemoteViews(context.getPackageName(), R.layout.widget_week_block);
         int shape = first && last ? R.drawable.widget_block : first ? R.drawable.widget_block_top : last ? R.drawable.widget_block_bottom : R.drawable.widget_block_mid;
         boolean reminder = b.item.kind == WidgetData.KIND_REMINDER;
+        int color = reminder ? b.item.color : WidgetUi.chipColor(b.item.color);
         piece.setImageViewResource(R.id.block_bg, shape);
+        piece.setInt(R.id.block_bg, "setColorFilter", color);
+        // Dove il blocco continua nell'ora prima o dopo, una striscia che sporge rende netto il bordo del pezzo
+        // (vedi widget_week_block.xml): i pezzi si attaccano senza righe in mezzo.
+        join(piece, R.id.block_join_top, !first, color);
+        join(piece, R.id.block_join_bottom, !last, color);
         if (reminder) {
             // Promemoria: sfondo scuro con il bordo del suo colore, come nell'app.
-            piece.setInt(R.id.block_bg, "setColorFilter", b.item.color);
+            int fill = context.getColor(R.color.widget_surface2);
             piece.setViewVisibility(R.id.block_edge, View.VISIBLE);
             piece.setViewPadding(R.id.block_edge, m.edgePx, first ? m.edgePx : 0, m.edgePx, last ? m.edgePx : 0);
             piece.setImageViewResource(R.id.block_fill, shape);
-            piece.setInt(R.id.block_fill, "setColorFilter", context.getColor(R.color.widget_surface2));
+            piece.setInt(R.id.block_fill, "setColorFilter", fill);
+            join(piece, R.id.block_fill_top, !first, fill);
+            join(piece, R.id.block_fill_bottom, !last, fill);
             piece.setTextColor(R.id.block_text, context.getColor(R.color.widget_text));
         } else {
-            piece.setInt(R.id.block_bg, "setColorFilter", WidgetUi.chipColor(b.item.color));
             piece.setViewVisibility(R.id.block_edge, View.GONE);
             piece.setTextColor(R.id.block_text, 0xFFFFFFFF);
         }
@@ -341,6 +348,12 @@ final class WeekHours {
         piece.setInt(R.id.block_text, "setHeight", heightPx);
         if (lines > 0) piece.setInt(R.id.block_text, "setMaxLines", lines);
         return piece;
+    }
+
+    /** Accende (con il colore giusto) o spegne una delle strisce che attaccano un pezzo a quello dell'ora vicina. */
+    private static void join(RemoteViews piece, int id, boolean on, int color) {
+        piece.setViewVisibility(id, on ? View.VISIBLE : View.GONE);
+        if (on) piece.setInt(id, "setColorFilter", color);
     }
 
     /** Il titolo si scrive una volta sola: nel primo pezzo del blocco abbastanza alto da contenerlo. */
