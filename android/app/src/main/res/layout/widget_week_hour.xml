@@ -14,12 +14,12 @@
         android:id="@+id/hour_label"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.62"
+        android:layout_weight="0.5"
         android:gravity="top|end"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:paddingTop="2dp"
-        android:paddingEnd="5dp"
+        android:paddingEnd="4dp"
         android:textColor="@color/widget_dim"
         android:textSize="9sp" />
 

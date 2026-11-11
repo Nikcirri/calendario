@@ -40,8 +40,8 @@ final class WeekHours {
     private static final int DEFAULT_WIDTH_DP = 300;
     /** Sotto questa larghezza (in dp) una colonna è troppo stretta per scriverci il titolo. */
     private static final float MIN_TEXT_LANE_DP = 16f;
-    /** La colonna delle ore pesa 0.62 e ogni giorno 1 (vedi widget_week_hour.xml). */
-    private static final float WEIGHTS = 7.62f;
+    /** La colonna delle ore pesa 0.5 e ogni giorno 1 (vedi widget_week_hour.xml). */
+    private static final float WEIGHTS = 7.5f;
 
     private static final int[] CELLS = { R.id.hour_d0, R.id.hour_d1, R.id.hour_d2, R.id.hour_d3, R.id.hour_d4, R.id.hour_d5, R.id.hour_d6 };
 

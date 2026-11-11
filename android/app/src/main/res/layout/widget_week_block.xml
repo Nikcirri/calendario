@@ -38,9 +38,8 @@
         android:breakStrategy="simple"
         android:hyphenationFrequency="none"
         android:includeFontPadding="false"
-        android:paddingStart="3dp"
+        android:paddingStart="2dp"
         android:paddingTop="@dimen/widget_block_pad"
-        android:paddingEnd="1dp"
         android:textColor="#FFFFFFFF"
         android:textSize="@dimen/widget_block_text" />
 </FrameLayout>

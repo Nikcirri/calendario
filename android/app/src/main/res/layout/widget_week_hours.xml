@@ -2,7 +2,7 @@
 <!--
   Widget "Settimana" quando è alto: titolo, +, i sette giorni e sotto la griglia delle ore che si scorre
   (una riga per ogni ora, widget_week_hour.xml). Solo viste ammesse nei widget.
-  La colonna delle ore a sinistra pesa 0.62 e ogni giorno pesa 1, qui e in widget_week_hour.xml:
+  La colonna delle ore a sinistra pesa 0.5 e ogni giorno pesa 1, qui e in widget_week_hour.xml:
   così i giorni in alto restano allineati alle colonne della griglia.
   Le misure in dp devono restare uguali alle costanti di WeekWidget.java e WeekHours.java.
 -->
@@ -60,7 +60,7 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_weight="0.62" />
+            android:layout_weight="0.5" />
 
         <LinearLayout
             android:id="@+id/week_heads"
