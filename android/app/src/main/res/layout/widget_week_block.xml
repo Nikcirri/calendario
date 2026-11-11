@@ -5,7 +5,9 @@
   resta visibile solo come bordo, come nell'app.
 
   Le strisce "join" si accendono sui lati dove il blocco continua nell'ora prima o dopo. Sporgono di 2dp
-  oltre il pezzo (margine negativo) e ripassano il colore più volte (widget_block_join.xml).
+  oltre il pezzo (margine negativo) e ripassano il colore più volte (widget_block_join.xml). Ai lati
+  restano un pixel più strette del pezzo: così non ripassano anche il bordo sfumato del blocco, che
+  altrimenti a ogni giuntura sembrerebbe più largo.
   Servono sulle schermate Home che disegnano i widget un po' rimpiccioliti (Samsung): lì il bordo tra due
   righe della lista cade a metà pixel e Android lo sfuma, quindi tra un pezzo e l'altro di un blocco lungo
   si vedrebbe una riga sottile più scura. La prova weekHoursBlocksAreSeamlessWhenScaled lo controlla.
@@ -26,6 +28,8 @@
         android:id="@+id/block_join_top"
         android:layout_width="match_parent"
         android:layout_height="4dp"
+        android:layout_marginStart="1px"
+        android:layout_marginEnd="1px"
         android:layout_gravity="top"
         android:layout_marginTop="-2dp"
         android:importantForAccessibility="no"
@@ -37,6 +41,8 @@
         android:id="@+id/block_join_bottom"
         android:layout_width="match_parent"
         android:layout_height="4dp"
+        android:layout_marginStart="1px"
+        android:layout_marginEnd="1px"
         android:layout_gravity="bottom"
         android:layout_marginBottom="-2dp"
         android:importantForAccessibility="no"
@@ -62,6 +68,8 @@
             android:id="@+id/block_fill_top"
             android:layout_width="match_parent"
             android:layout_height="4dp"
+        android:layout_marginStart="1px"
+        android:layout_marginEnd="1px"
             android:layout_gravity="top"
             android:layout_marginTop="-2dp"
             android:importantForAccessibility="no"
@@ -73,6 +81,8 @@
             android:id="@+id/block_fill_bottom"
             android:layout_width="match_parent"
             android:layout_height="4dp"
+        android:layout_marginStart="1px"
+        android:layout_marginEnd="1px"
             android:layout_gravity="bottom"
             android:layout_marginBottom="-2dp"
             android:importantForAccessibility="no"
