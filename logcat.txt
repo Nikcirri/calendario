@@ -1,0 +1,271 @@
+--------- beginning of main
+I/TestRunner( 5761): run started: 9 tests
+I/TestRunner( 5761): started: weekStaysAsLabelsUntilTall(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): finished: weekStaysAsLabelsUntilTall(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: agendaFitsSmallHeightAndEmptyStates(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): finished: agendaFitsSmallHeightAndEmptyStates(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: weekHoursFollowNow(com.nikcirri.calendario.widgets.WidgetRenderTest)
+E/AppWidgetHostView( 5761): Error trying to create the remote context.
+E/AppWidgetHostView( 5761): java.lang.NullPointerException: Attempt to read from field 'android.content.pm.ActivityInfo android.appwidget.AppWidgetProviderInfo.providerInfo' on a null object reference in method 'android.content.Context android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath()'
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath(AppWidgetHostView.java:736)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.applyRemoteViews(AppWidgetHostView.java:569)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.updateAppWidget(AppWidgetHostView.java:520)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$weekHoursFollowNow$4(WidgetRenderTest.java:334)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.$r8$lambda$pHhk_CtAoAfVilvB7pZ92i6S1W0(Unknown Source:0)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda14.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$onMain$0(WidgetRenderTest.java:95)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+E/AppWidgetHostView( 5761): 	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2420)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.handleCallback(Handler.java:958)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loopOnce(Looper.java:205)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loop(Looper.java:294)
+E/AppWidgetHostView( 5761): 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+E/AppWidgetHostView( 5761): 	at java.lang.reflect.Method.invoke(Native Method)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+E/AppWidgetHostView( 5761): Error trying to create the remote context.
+E/AppWidgetHostView( 5761): java.lang.NullPointerException: Attempt to read from field 'android.content.pm.ActivityInfo android.appwidget.AppWidgetProviderInfo.providerInfo' on a null object reference in method 'android.content.Context android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath()'
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath(AppWidgetHostView.java:736)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.applyRemoteViews(AppWidgetHostView.java:569)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.updateAppWidget(AppWidgetHostView.java:520)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$weekHoursFollowNow$6(WidgetRenderTest.java:342)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$onMain$0(WidgetRenderTest.java:95)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+E/AppWidgetHostView( 5761): 	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2420)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.handleCallback(Handler.java:958)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loopOnce(Looper.java:205)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loop(Looper.java:294)
+E/AppWidgetHostView( 5761): 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+E/AppWidgetHostView( 5761): 	at java.lang.reflect.Method.invoke(Native Method)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+E/AppWidgetHostView( 5761): Error trying to create the remote context.
+E/AppWidgetHostView( 5761): java.lang.NullPointerException: Attempt to read from field 'android.content.pm.ActivityInfo android.appwidget.AppWidgetProviderInfo.providerInfo' on a null object reference in method 'android.content.Context android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath()'
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath(AppWidgetHostView.java:736)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.applyRemoteViews(AppWidgetHostView.java:569)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.updateAppWidget(AppWidgetHostView.java:520)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$weekHoursFollowNow$8(WidgetRenderTest.java:348)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$onMain$0(WidgetRenderTest.java:95)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+E/AppWidgetHostView( 5761): 	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2420)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.handleCallback(Handler.java:958)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loopOnce(Looper.java:205)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loop(Looper.java:294)
+E/AppWidgetHostView( 5761): 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+E/AppWidgetHostView( 5761): 	at java.lang.reflect.Method.invoke(Native Method)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+I/TestRunner( 5761): finished: weekHoursFollowNow(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: weekHoursRowsForOlderAndroid(com.nikcirri.calendario.widgets.WidgetRenderTest)
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+E/RemoteViews( 5761): The method setOnClickFillInIntent is available only from RemoteViewsFactory (ie. on collection items).
+I/TestRunner( 5761): finished: weekHoursRowsForOlderAndroid(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: agendaShowsTodayAndNextDays(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): finished: agendaShowsTodayAndNextDays(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: monthShowsGridWithToday(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): finished: monthShowsGridWithToday(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: weekShowsHourGridWhenTall(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): finished: weekShowsHourGridWhenTall(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: weekHoursBlocksAreSeamlessWhenScaled(com.nikcirri.calendario.widgets.WidgetRenderTest)
+E/AppWidgetHostView( 5761): Error trying to create the remote context.
+E/AppWidgetHostView( 5761): java.lang.NullPointerException: Attempt to read from field 'android.content.pm.ActivityInfo android.appwidget.AppWidgetProviderInfo.providerInfo' on a null object reference in method 'android.content.Context android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath()'
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.getRemoteContextEnsuringCorrectCachedApkPath(AppWidgetHostView.java:736)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.applyRemoteViews(AppWidgetHostView.java:569)
+E/AppWidgetHostView( 5761): 	at android.appwidget.AppWidgetHostView.updateAppWidget(AppWidgetHostView.java:520)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$weekHoursBlocksAreSeamlessWhenScaled$10(WidgetRenderTest.java:374)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.$r8$lambda$zMPQ_p5nOkO5_D-y4U_4DAiSEv0(Unknown Source:0)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda8.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest.lambda$onMain$0(WidgetRenderTest.java:95)
+E/AppWidgetHostView( 5761): 	at com.nikcirri.calendario.widgets.WidgetRenderTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+E/AppWidgetHostView( 5761): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+E/AppWidgetHostView( 5761): 	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2420)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.handleCallback(Handler.java:958)
+E/AppWidgetHostView( 5761): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loopOnce(Looper.java:205)
+E/AppWidgetHostView( 5761): 	at android.os.Looper.loop(Looper.java:294)
+E/AppWidgetHostView( 5761): 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+E/AppWidgetHostView( 5761): 	at java.lang.reflect.Method.invoke(Native Method)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+E/AppWidgetHostView( 5761): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+I/TestRunner( 5761): finished: weekHoursBlocksAreSeamlessWhenScaled(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): started: weekShowsSevenDaysWithEvents(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): finished: weekShowsSevenDaysWithEvents(com.nikcirri.calendario.widgets.WidgetRenderTest)
+I/TestRunner( 5761): run finished: 9 tests, 0 failed, 0 ignored

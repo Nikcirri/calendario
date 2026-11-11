@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.nikcirri.calendario.widgets.WidgetRenderTest" tests="9" failures="0" errors="0" skipped="0" time="15.873" timestamp="2026-11-11T08:23:24" hostname="localhost">
+  <properties>
+    <property name="device" value="emulator-5554 - 14" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="weekStaysAsLabelsUntilTall" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="0.197" />
+  <testcase name="agendaFitsSmallHeightAndEmptyStates" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="0.11" />
+  <testcase name="weekHoursFollowNow" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="7.26" />
+  <testcase name="weekHoursRowsForOlderAndroid" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="1.554" />
+  <testcase name="agendaShowsTodayAndNextDays" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="0.054" />
+  <testcase name="monthShowsGridWithToday" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="0.202" />
+  <testcase name="weekShowsHourGridWhenTall" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="0.932" />
+  <testcase name="weekHoursBlocksAreSeamlessWhenScaled" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="3.033" />
+  <testcase name="weekShowsSevenDaysWithEvents" classname="com.nikcirri.calendario.widgets.WidgetRenderTest" time="0.761" />
+</testsuite>
