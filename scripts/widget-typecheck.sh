@@ -16,7 +16,8 @@ python3 "$REPO/scripts/widget-typecheck-stubs.py" "$REPO" "$TMP/stubs"
 W="$REPO/android/app/src/main/java/com/nikcirri/calendario/widgets"
 T="$REPO/android/app/src/androidTest/java/com/nikcirri/calendario/widgets"
 # WidgetsPlugin usa Capacitor, che qui non c'è: resta fuori dal controllo.
-mapfile -t FILES < <(ls "$W"/*.java | grep -v WidgetsPlugin.java; ls "$T"/*.java; find "$TMP/stubs" -name '*.java')
+D="$REPO/android/app/src/debug/java/com/nikcirri/calendario/widgets"
+mapfile -t FILES < <(ls "$W"/*.java | grep -v WidgetsPlugin.java; ls "$D"/*.java "$T"/*.java; find "$TMP/stubs" -name '*.java')
 mkdir -p "$TMP/out"
 javac -proc:none --release 17 -cp "$JAR" -d "$TMP/out" "${FILES[@]}"
 echo "Tipi a posto"

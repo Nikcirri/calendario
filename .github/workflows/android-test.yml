@@ -60,7 +60,7 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -camera-back none
-          script: bash scripts/android-widget-test.sh "$RUNNER_TEMP/prova-android" || (tail -n 150 "$RUNNER_TEMP/prova-android/gradle-completo.log" > "$RUNNER_TEMP/prova-android/gradle.log"; rm -f "$RUNNER_TEMP/prova-android/gradle-completo.log"; exit 1)
+          script: bash scripts/android-widget-test.sh "$RUNNER_TEMP/prova-android"
 
       - name: Riepilogo delle prove
         if: always()

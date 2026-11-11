@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Solo nella versione di prova dell'app (debug), mai in quella pubblicata: una finestra vuota per provare i widget. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name=".widgets.WidgetTestActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Material.NoActionBar" />
+    </application>
+</manifest>

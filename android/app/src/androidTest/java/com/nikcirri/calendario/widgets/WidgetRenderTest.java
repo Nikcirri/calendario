@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetHostView;
 import android.content.Context;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
-import com.nikcirri.calendario.MainActivity;
 import com.nikcirri.calendario.R;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -78,10 +78,26 @@ public class WidgetRenderTest {
         WidgetStore.saveSnapshot(context, SNAPSHOT);
     }
 
+    /**
+     * Esegue un'azione sul filo principale (dove vivono le viste). Un errore lì farebbe chiudere l'app
+     * di prova senza spiegazioni: qui viene raccolto e riportato alla prova, con il suo testo.
+     */
+    private static void onMain(Runnable action) {
+        Throwable[] error = new Throwable[1];
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+            try {
+                action.run();
+            } catch (Throwable t) {
+                error[0] = t;
+            }
+        });
+        if (error[0] != null) throw new AssertionError("Errore nel disegnare il widget: " + error[0], error[0]);
+    }
+
     /** Costruisce davvero le viste del widget, come fa la schermata Home, e ne salva l'immagine. */
     private View inflate(RemoteViews views, int widthDp, int heightDp, String name) {
         View[] out = new View[1];
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+        onMain(() -> {
             View view = views.apply(context, new FrameLayout(context));
             float density = context.getResources().getDisplayMetrics().density;
             int w = Math.round(widthDp * density);
@@ -112,7 +128,7 @@ public class WidgetRenderTest {
      */
     private View inflateHosted(RemoteViews views, int widthDp, int heightDp, int firstHour, String name) {
         View[] out = new View[1];
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+        onMain(() -> {
             AppWidgetHostView host = new AppWidgetHostView(context);
             View view = views.apply(context, host);
             host.addView(view);
@@ -301,34 +317,36 @@ public class WidgetRenderTest {
         assertEquals(23, WeekHours.scrollRow(22 * 60, 6));
         assertEquals(1, WeekHours.scrollRow(10, 3));
 
-        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+        try (ActivityScenario<WidgetTestActivity> scenario = ActivityScenario.launch(WidgetTestActivity.class)) {
+            Activity[] activity = new Activity[1];
+            scenario.onActivity(a -> activity[0] = a);
             AppWidgetHostView[] host = new AppWidgetHostView[1];
-            scenario.onActivity(activity -> {
+            onMain(() -> {
                 // Come sulla schermata Home: il contenitore riceve il widget e lo disegna in una finestra vera.
-                host[0] = new AppWidgetHostView(activity);
-                activity.addContentView(host[0], new FrameLayout.LayoutParams(px(320), px(400)));
-                host[0].updateAppWidget(WeekWidget.build(activity, 1, 320, 400, TODAY, NOW));
+                host[0] = new AppWidgetHostView(activity[0]);
+                activity[0].addContentView(host[0], new FrameLayout.LayoutParams(px(320), px(400)));
+                host[0].updateAppWidget(WeekWidget.build(activity[0], 1, 320, 400, TODAY, NOW));
             });
-            int[] first = settle(scenario, host[0]);
+            int[] first = settle(host[0]);
+            onMain(() -> save(picture(host[0]), "widget-settimana-ore-adesso"));
             // Appena creato, il widget si porta da solo su "adesso": le 13 si vedono e sopra c'è l'ora prima.
             assertTrue("Prima riga visibile: " + first[0] + ", ultima: " + first[1], first[0] >= 11 && first[0] <= 12 && first[1] >= 17);
-            scenario.onActivity(activity -> save(picture(host[0]), "widget-settimana-ore-adesso"));
 
             // Tre ore dopo (un aggiornamento qualsiasi): la lista segue l'ora.
-            scenario.onActivity(activity -> host[0].updateAppWidget(WeekWidget.build(activity, 1, 320, 400, TODAY, NOW + 180)));
-            int[] later = settle(scenario, host[0]);
+            onMain(() -> host[0].updateAppWidget(WeekWidget.build(activity[0], 1, 320, 400, TODAY, NOW + 180)));
+            int[] later = settle(host[0]);
+            onMain(() -> save(picture(host[0]), "widget-settimana-ore-dopo"));
             assertTrue("Prima riga visibile: " + later[0] + ", ultima: " + later[1], later[0] >= 14 && later[0] <= 15 && later[1] >= 20);
 
             // Stessa ora, dati cambiati: la lista resta dov'è.
-            scenario.onActivity(activity -> host[0].updateAppWidget(WeekWidget.build(activity, 1, 320, 400, TODAY, NOW + 185)));
-            int[] same = settle(scenario, host[0]);
+            onMain(() -> host[0].updateAppWidget(WeekWidget.build(activity[0], 1, 320, 400, TODAY, NOW + 185)));
+            int[] same = settle(host[0]);
             assertEquals(later[0], same[0]);
-            scenario.onActivity(activity -> save(picture(host[0]), "widget-settimana-ore-dopo"));
         }
     }
 
     /** Aspetta che la lista del widget sia disegnata e ferma; restituisce prima e ultima riga visibile. */
-    private int[] settle(ActivityScenario<MainActivity> scenario, AppWidgetHostView host) {
+    private int[] settle(AppWidgetHostView host) {
         int[] now = { -1, -1, 0 };
         int[] before = { -2, -2, 0 };
         int still = 0;
@@ -338,7 +356,7 @@ public class WidgetRenderTest {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            scenario.onActivity(activity -> {
+            onMain(() -> {
                 ListView list = host.findViewById(R.id.week_hours);
                 boolean ready = list != null && list.getChildCount() > 0;
                 now[0] = ready ? list.getFirstVisiblePosition() : -1;
@@ -348,7 +366,7 @@ public class WidgetRenderTest {
             still = now[0] >= 0 && now[0] == before[0] && now[1] == before[1] && now[2] == before[2] ? still + 1 : 0;
             System.arraycopy(now, 0, before, 0, 3);
         }
-        assertTrue("La lista delle ore non si è disegnata", now[0] >= 0);
+        assertTrue("La lista delle ore non si è disegnata: " + texts(host), now[0] >= 0);
         return now;
     }
 
